@@ -1,0 +1,20 @@
+{
+  "name": "reflectjs-bootstrap-kit",
+  "version": "0.1.0",
+  "description": "[Bootstrap](https://getbootstrap.com) kit for [ReflectJS](https://github.com/fcapolini/reflectjs).",
+  "main": "index.js",
+  "scripts": {
+    "start": "cd docroot && ts-node ../../reflectjs/src/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fcapolini/reflectjs-bootstrap-kit.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fcapolini/reflectjs-bootstrap-kit/issues"
+  },
+  "homepage": "https://github.com/fcapolini/reflectjs-bootstrap-kit#readme"
+}
