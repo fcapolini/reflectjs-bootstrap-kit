@@ -5,11 +5,15 @@
     <:import src="parts/example.htm"/>
     <!--- TODO: the 'img' checkbox doesn't work in safari?? -->
     <:define tag="bs-card-example:bs-example"
+            :header="[[sampleHeader]]"
             :img=[[sampleImg]]
             :title=[[sampleTitle]]
             :subtitle=[[sampleSubtitle]]
             :list="[[sampleList]]"
             :links="[[sampleLinks]]"
+            :footer="[[sampleFooter]]"
+
+            :sampleHeader="[[true]]"
             :sampleImg=[[
               `data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iYmQtcGxhY2Vob2xkZXItaW1nIGNh` +
               `cmQtaW1nLXRvcCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTgwIiB4bWxucz0iaHR0cDovL3` +
@@ -24,12 +28,16 @@
             :sampleLinks="[[[
               { href: '#', text: 'A link' },
               { href: '#', text: 'Another link' },
-            ]]]">
+            ]]]"
+            :sampleFooter="[[true]]">
       <bs-example-header>
         Card
       </bs-example-header>
 
       <bs-example-toolbar>
+        <bs-example-checkbox :label="header"
+                            :checked=[[true]]
+                            :handler=[[(v) => header = (v ? sampleHeader : false)]]/>
         <bs-example-checkbox :label="img"
                             :checked=[[true]]
                             :handler=[[(v) => img = (v ? sampleImg : null)]]/>
@@ -45,9 +53,19 @@
         <bs-example-checkbox :label="links"
                             :checked=[[true]]
                             :handler=[[(v) => links = (v ? sampleLinks : null)]]/>
+        <bs-example-checkbox :label="footer"
+                            :checked=[[true]]
+                            :handler=[[(v) => footer = (v ? sampleFooter : false)]]/>
       </bs-example-toolbar>
       
-      <bs-card :img=[[img]] :title=[[title]] :subtitle=[[subtitle]] :list="[[list]]" :links="[[links]]">
+      <bs-card :header="[[header]]"
+               :img=[[img]]
+               :title=[[title]]
+               :subtitle=[[subtitle]]
+               :list="[[list]]"
+               :links="[[links]]"
+               :footer="[[footer]]">
+          <div :slot="header">Sample card</div>
           Some quick example text to build on the card title and make up
           the bulk of the card's content.
           <ul :slot="list" class="list-group list-group-flush"
@@ -56,6 +74,7 @@
             <li class="list-group-item">A second item</li>
             <li class="list-group-item">A third item</li>
           </ul>
+          <div :slot="footer">2 days ago</div>
       </bs-card>
     </:define>
   </head>

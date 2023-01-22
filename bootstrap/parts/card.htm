@@ -10,17 +10,22 @@
 
   <!--- https://getbootstrap.com/docs/5.2/components/card/ -->
   <:define tag="bs-card" class="card"
+           :header="[[false]]"
            :img=[[null]]
            :imgAlt=[[null]]
            :title=[[null]]
            :subtitle=[[null]]
            :list="[[false]]"
            :links=[[null]]
+           :footer="[[false]]"
            :class-noLinks="[[!links]]"
            >
-    <img src=[[img]] class="card-img-top"
+    <div class="card-header" :style-display="[[header ? null : 'none']]">
+      <:slot name="header"/>
+    </div>
+    <img src=[[img]] :class-cardImgTop="[[!header]]"
          alt=[[imgAlt]]
-         :style-display=[[img ? null : 'display: none']]>
+         :style-display=[[img ? null : 'none']]>
     <div class="card-body">
       <h5 class="card-title" :style-display=[[title ? null : 'none']]>[[title]]</h5>
       <h6 class="card-subtitle mb-2 text-muted" :style-display=[[subtitle ? null : 'none']]>[[subtitle]]</h6>
@@ -32,6 +37,9 @@
          :style-display="[[links ? null : 'none']]">
       <bs-card-link :data="[[links]]"
                     href="[[data.href]]">[[data.text]]</bs-card-link>
+    </div>
+    <div class="card-footer text-muted" :style-display="[[footer ? null : 'none']]">
+      <:slot name="footer"/>
     </div>
   </:define>
 
