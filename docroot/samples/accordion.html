@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <:import src="/.kit/bootstrap/all.htm"/>
+    <:import src="parts/example.htm"/>
+    <:define tag="bs-accordion-example:bs-example"
+            :title=""
+            :flush=[[false]]
+            :mutex=[[true]]>
+      <bs-example-header>
+        [[title]]
+      </bs-example-header>
+      
+      <bs-example-toolbar :aka="toolbar"
+                          :selection=[[accordion.selection]]
+                          :handle-selection=[[selectionInput.input.__dom.value = selection]]>
+        <bs-example-checkbox :label="mutex"
+                            :checked=[[mutex]]/>
+        <bs-example-checkbox :label="flush"
+                            :handler=[[(v) => accordion.flush = v]]/>
+        <bs-example-input-number :aka="selectionInput"
+                                :style-display=[[mutex ? null : 'none']]
+                                :label="selection"
+                                :handler=[[(v) => accordion.selection = v]]/>
+      </bs-example-toolbar>
+
+      <bs-accordion :aka="accordion"
+                    :mutex=[[mutex]]
+                    :handle-selection=[[toolbar.selection = selection]]>
+        <bs-accordion-item :header="Item #1">
+          <strong>This is the first item's accordion body.</strong> It is shown by default, until the
+          collapse plugin adds the appropriate classes that we use to style each element. These classes
+          control the overall appearance, as well as the showing and hiding via CSS transitions. You can
+          modify any of this with custom CSS or overriding our default variables. It's also worth noting
+          that just about any HTML can go within the <code>.accordion-body</code>, though the transition
+          does limit overflow.
+        </bs-accordion-item>
+
+        <bs-accordion-item :header="Item #2">
+          <strong>This is the second item's accordion body.</strong> It is hidden by default, until the
+          collapse plugin adds the appropriate classes that we use to style each element. These classes
+          control the overall appearance, as well as the showing and hiding via CSS transitions. You can
+          modify any of this with custom CSS or overriding our default variables. It's also worth noting
+          that just about any HTML can go within the <code>.accordion-body</code>, though the transition
+          does limit overflow.
+        </bs-accordion-item>
+      </bs-accordion>
+    </:define>
+  </head>
+  <body>
+    <bs-container>
+    <p/>
+    <bs-accordion-example :title="Accordion — mutex" :mutex="[[true]]"/>
+    <bs-accordion-example :title="Accordion — free" :mutex="[[false]]"/>
+    </bs-container>
+  </body>
+</html>

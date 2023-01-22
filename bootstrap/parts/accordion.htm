@@ -1,0 +1,42 @@
+<lib>
+  <:import src="../base.htm"/>
+
+	<:define tag="bs-accordion" class="accordion"
+					 :flush=[[false]]
+					 :mutex=[[true]]
+					 :selection=[[0]]
+
+					 :_accordionId="[[__id]]"
+					 id="accordion-[[_accordionId]]"
+					 :class-accordionFlush=[[flush]]>
+	</:define>
+
+	<:define tag="bs-accordion-item" class="accordion-item"
+					 :header=""
+
+					 :_itemId=[[__id]]
+					 :_itemIndex="[[__elementIndex()]]"
+					 :handle-data=[[_itemIndex = __elementIndex()]]
+					 :_selected="[[false]]"
+					 :on-selection=[[mutex ? _selected = (selection === _itemIndex) : null]]
+					 :on-hidden.bs.collapse="[[() => mutex && selection === _itemIndex ? selection = -1 : null]]"
+					 :on-shown.bs.collapse="[[() => mutex ? selection = _itemIndex : null]]">
+		<h2 class="accordion-header" id="heading-[[_itemId]]">
+			<button type="button"
+						  class="accordion-button" :class-collapsed=[[!_selected]]
+							data-bs-toggle="collapse" data-bs-target="#collapse-[[_itemId]]"
+							aria-expanded=[[_selected]] aria-controls="collapse-[[_itemId]]">
+				[[header]]<:slot name="header"/>
+			</button>
+		</h2>
+		<div id="collapse-[[_itemId]]"
+				 class="accordion-collapse collapse" :class-show=[[_selected]]
+				 data-bs-parent=[[mutex ? '#accordion-' + _accordionId : null]]
+				 aria-labelledby="heading-[[_itemId]]">
+			<div class="accordion-body">
+				<:slot name="default"/>
+			</div>
+		</div>
+	</:define>
+
+</lib>

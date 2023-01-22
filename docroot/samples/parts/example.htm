@@ -1,0 +1,35 @@
+<lib>
+  <:define tag="bs-example" style="padding:1em 1em 1em 1em"/>
+
+  <:define tag="bs-example-header:h4" style="margin-bottom:1.5em" :icon="bi-box">
+    <i class="[[icon]]"></i>
+  </:define>
+
+  <:define tag="bs-example-toolbar" style="margin: -1.4em 0 1em 0; padding: .5em 0; text-align: center">
+  </:define>
+
+  <:define tag="bs-example-checkbox" class="form-check form-check-inline"
+           :checked=[[false]]
+           :label="checkbox"
+           :handler=[[null]]
+           :inputId="card-[[__id]]">
+    <input class="form-check-input" type="checkbox" id=[[inputId]]
+           checked=[[checked ? '' : null]]
+           disabled=[[handler ? null : '']]
+           :on-change=[[() => handler && handler(__dom.checked)]]>
+    <label class="form-check-label" style="user-select: none;" for="[[inputId]]">[[label]]</label>
+  </:define>
+
+  <!--- this doesn't work well in safari -->
+  <:define tag="bs-example-input-number" class="form-check form-check-inline" style="padding-left: 0"
+           :value="[[0]]"
+           :label="number"
+           :handler="[[null]]"
+           :inputId="card-[[__id]]">
+    <input type="number" class="form-text-input" style="width: 2.5em" id=[[inputId]]
+           :aka="input"
+           :on-change=[[() => handler && handler(window.parseInt(__dom.value))]]/>
+    <label class="form-check-label" style="user-select: none;" for="[[inputId]]">[[label]]</label>
+  </:define>
+
+</lib>

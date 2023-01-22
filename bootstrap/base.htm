@@ -15,6 +15,7 @@
       window.document.documentElement.setAttribute('data-bs-theme', mode);
     }]]
 >
+
   <!--- https://getbootstrap.com/docs/5.3/getting-started/introduction/ -->
   <!--- https://getbootstrap.com/docs/5.3/customize/color-modes/#javascript -->
   <meta charset="UTF-8">
@@ -32,4 +33,16 @@
       document.body.appendChild(e);
     });
   </script>
+
+  <!--- https://getbootstrap.com/docs/5.2/layout/containers/ -->
+  <:define tag="bs-container"
+    :size=""
+    class=[['container' + (size ? '-' + size : '')]]/>
+
+  <!--- https://getbootstrap.com/docs/5.2/layout/grid/ -->
+  <:define tag="bs-row" class="row"/>
+
+  <!--- https://getbootstrap.com/docs/5.2/layout/columns/ -->
+  <:define tag="bs-col" class="col"/>
+
 </lib>
