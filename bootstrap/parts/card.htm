@@ -1,0 +1,40 @@
+<lib>
+  <:import src="../base.htm"/>
+  <style>
+    .card.no-links > .list-group.list-group-flush {
+      border-bottom: 0;
+      border-bottom-left-radius: var(--bs-card-border-radius);
+      border-bottom-right-radius: var(--bs-card-border-radius);
+    }
+  </style>
+
+  <!--- https://getbootstrap.com/docs/5.2/components/card/ -->
+  <:define tag="bs-card" class="card"
+           :img=[[null]]
+           :imgAlt=[[null]]
+           :title=[[null]]
+           :subtitle=[[null]]
+           :list="[[false]]"
+           :links=[[null]]
+           :class-noLinks="[[!links]]"
+           >
+    <img src=[[img]] class="card-img-top"
+         alt=[[imgAlt]]
+         :style-display=[[img ? null : 'display: none']]>
+    <div class="card-body">
+      <h5 class="card-title" :style-display=[[title ? null : 'none']]>[[title]]</h5>
+      <h6 class="card-subtitle mb-2 text-muted" :style-display=[[subtitle ? null : 'none']]>[[subtitle]]</h6>
+      <:slot name="default"/>
+    </div>
+    <:slot name="list"/>
+    <div class="card-body"
+         :style-paddingTop="[[list ? null : '0']]"
+         :style-display="[[links ? null : 'none']]">
+      <bs-card-link :data="[[links]]"
+                    href="[[data.href]]">[[data.text]]</bs-card-link>
+    </div>
+  </:define>
+
+  <:define tag="bs-card-link:a" class="card-link"/>
+
+</lib>

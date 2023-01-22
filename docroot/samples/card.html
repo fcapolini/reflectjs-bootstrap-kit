@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <:import src="/.kit/bootstrap/all.htm"/>
+    <:import src="parts/example.htm"/>
+    <!--- TODO: the 'img' checkbox doesn't work in safari?? -->
+    <:define tag="bs-card-example:bs-example"
+            :img=[[sampleImg]]
+            :title=[[sampleTitle]]
+            :subtitle=[[sampleSubtitle]]
+            :list="[[sampleList]]"
+            :links="[[sampleLinks]]"
+            :sampleImg=[[
+              `data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iYmQtcGxhY2Vob2xkZXItaW1nIGNh` +
+              `cmQtaW1nLXRvcCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTgwIiB4bWxucz0iaHR0cDovL3` +
+              `d3dy53My5vcmcvMjAwMC9zdmciIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0iUGxhY2Vob2xk` +
+              `ZXI6IEltYWdlIGNhcCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQgc2xpY2UiIG` +
+              `ZvY3VzYWJsZT0iZmFsc2UiPjx0aXRsZT5QbGFjZWhvbGRlcjwvdGl0bGU+PHJlY3Qgd2lk` +
+              `dGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzg2OGU5NiI+PC9yZWN0Pjwvc3ZnPg==`
+            ]]
+            :sampleTitle="Card title"
+            :sampleSubtitle="A subtitle"
+            :sampleList="[[true]]"
+            :sampleLinks="[[[
+              { href: '#', text: 'A link' },
+              { href: '#', text: 'Another link' },
+            ]]]">
+      <bs-example-header>
+        Card
+      </bs-example-header>
+
+      <bs-example-toolbar>
+        <bs-example-checkbox :label="img"
+                            :checked=[[true]]
+                            :handler=[[(v) => img = (v ? sampleImg : null)]]/>
+        <bs-example-checkbox :label="title"
+                            :checked=[[true]]
+                            :handler=[[(v) => title = (v ? sampleTitle : null)]]/>
+        <bs-example-checkbox :label="subtitle"
+                            :checked=[[true]]
+                            :handler=[[(v) => subtitle = (v ? sampleSubtitle : null)]]/>
+        <bs-example-checkbox :label="list"
+                            :checked=[[true]]
+                            :handler=[[(v) => list = (v ? sampleList : false)]]/>
+        <bs-example-checkbox :label="links"
+                            :checked=[[true]]
+                            :handler=[[(v) => links = (v ? sampleLinks : null)]]/>
+      </bs-example-toolbar>
+      
+      <bs-card :img=[[img]] :title=[[title]] :subtitle=[[subtitle]] :list="[[list]]" :links="[[links]]">
+          Some quick example text to build on the card title and make up
+          the bulk of the card's content.
+          <ul :slot="list" class="list-group list-group-flush"
+              :style-display="[[list ? null : 'none']]">
+            <li class="list-group-item">An item</li>
+            <li class="list-group-item">A second item</li>
+            <li class="list-group-item">A third item</li>
+          </ul>
+      </bs-card>
+    </:define>
+  </head>
+  <body>
+    <bs-container>
+    <p/>
+    <bs-card-example/>
+    </bs-container>
+  </body>
+</html>
