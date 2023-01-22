@@ -2,8 +2,21 @@
 <html>
   <head>
     <:import src="/.kit/bootstrap/all.htm"/>
+    <:import src="parts/example.htm"/>
   </head>
   <body>
-    Hello
+    <bs-container>
+      <p/>
+      <bs-example>
+        <bs-example-header>
+          Grid
+        </bs-example-header>
+      </bs-example>
+      <bs-row :class-textCenter="[[true]]">
+        <bs-col>Column 1</bs-col>
+        <bs-col>Column 2</bs-col>
+        <bs-col>Column 3</bs-col>
+      </bs-row>
+    </bs-container>
   </body>
 </html>

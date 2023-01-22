@@ -1,20 +1,38 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ReflectJS Bootstrap Kit</title>
+    <title>Bootstrap Kit</title>
     <:import src="/.kit/bootstrap/all.htm"/>
     <:import src="/.kit/bootstrap/icons.htm"/>
+    <:import src="samples/parts/example.htm"/>
     <link rel="icon" href="favicon.svg">
+    <style>
+      .app-links {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .app-links > div {
+        width: 160px;
+        text-align: center;
+      }
+    </style>
   </head>
   <body>
-    <ul>
-      <li>
-        <i class="bi bi-box"></i> samples
-        <ul>
-          <li><a href="samples/base">base</a></li>
-          <li><a href="samples/accordion">accordion</a></li>
+    <bs-container>
+      <p/>
+      <bs-example>
+        <bs-example-header :icon="bi-bootstrap">
+          Bootstrap Kit
+        </bs-example-header>
+        <ul class="list-group">
+          <li class="list-group-item" :data="[[[
+            'base', 'accordion', 'card'
+          ]]]">
+            <i class="bi bi-box"/>&nbsp;
+            <a href="samples/[[data]]">[[data]]</a>
+          </li>
         </ul>
-      </li>
-    </ul>
+      </bs-example>
+    </bs-container>
   </body>
 </html>
