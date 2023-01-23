@@ -1,0 +1,80 @@
+<lib>
+  <:import src="../base.htm"/>
+  <:import src="dropdown.htm"/>
+
+  <!--- https://getbootstrap.com/docs/5.3/components/navbar/ -->
+  <:define tag="bs-navbar:nav" class="navbar"
+           :class-navbarExpandLg="[[true]]"
+           :title="Navbar"
+           :searchCB="[[null]]"
+           :showSearch="[[searchCB != null]]"
+           :searchBtnClass="btn-outline-info"
+           
+           :_navbarId="navbar-[[__id]]">
+    <div class="container-fluid">
+      <!--- brand -->
+      <a class="navbar-brand" href="#">
+        <:slot name="brand"/>
+        [[title]]
+      </a>
+
+      <!--- toggler -->
+      <button class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#[[_navbarId]]"
+              aria-controls="[[_navbarId]]"
+              aria-expanded="false"
+              aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="[[_navbarId]]">
+        <!--- content -->
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <:slot name="default"/>
+        </ul>
+
+        <!--- search -->
+        <form class="d-flex"
+              role="search"
+              aria-hidden="[[!showSearch]]"
+              style="[[showSearch ? null : 'display: none !important;']]"
+              :on-submit=[[(ev) => {
+                ev.preventDefault();
+                searchCB && searchCB(__dom.querySelector('input').value);
+              }]]>
+          <input class="form-control me-2"
+                 type="search"
+                 placeholder="Search"
+                 aria-label="Search">
+          <button class="btn [[searchBtnClass]]" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </:define>
+
+  <:define tag="bs-navbar-item:li" class="nav-item" />
+
+  <:define tag="bs-navbar-link:bs-navbar-item"
+           :active="[[false]]"
+           :disabled="[[false]]"
+           :href="#"
+           :text="Link">
+    <a class="nav-link"
+       :class-active="[[active]]"
+       :class-disabled="[[disabled]]"
+       aria-current="[[active ? 'page' : null]]"
+       href="[[href]]">[[text]]</a>
+  </:define>
+
+  <:define tag="bs-navbar-dropdown:bs-navbar-item" :class-dropdown="[[true]]" :title="Dropdown">
+    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      [[title]]
+    </a>
+    <bs-dropdown-menu>
+      <:slot name="default"/>
+    </bs-dropdown-menu>
+  </:define>
+
+</lib>

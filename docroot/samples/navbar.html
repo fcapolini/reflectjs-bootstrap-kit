@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <:import src="/.kit/bootstrap/all.htm"/>
+    <:import src="/.kit/bootstrap/icons.htm"/>
+    <:import src="parts/example.htm"/>
+  </head>
+  <body>
+    <bs-container>
+      <p/>
+      <bs-example>
+        <bs-example-header>
+          Navbar
+        </bs-example-header>
+
+        <bs-example-toolbar>
+          <bs-example-checkbox :label="icon" :checked=[[sample._icon]] :handler="[[v => sample._icon = v]]"/>
+          <bs-example-checkbox :label="links" :checked=[[sample._links]] :handler="[[v => sample._links = v]]"/>
+          <bs-example-checkbox :label="dropdown" :checked=[[sample._menu]] :handler="[[v => sample._menu = v]]"/>
+          <bs-example-checkbox :label="search" :checked=[[sample.showSearch]] :handler="[[v => sample.showSearch = v]]"/>
+          <select :on-change="[[ev => sample._extraClass = __dom.value]]">
+            <option value="">Default</option>
+            <option value="bg-body-secondary">Secondary</option>
+            <option value="bg-body-tertiary">Tertiary</option>
+          </select>
+        </bs-example-toolbar>
+
+        <bs-navbar :aka="sample" class="navbar navbar-expand-lg [[_extraClass]]"
+                   :title="Sample"
+                   :searchCB="[[(value) => window.console.log(value)]]"
+                   :_extraClass=""
+                   :_icon="[[true]]"
+                   :_links="[[true]]"
+                   :_menu="[[true]]">
+          <span :slot="brand" :style-display="[[_icon ? null : 'none']]">
+            <bs-icon :icon="yin-yang"/>&nbsp;
+          </span>
+
+          <bs-navbar-link :style-display="[[_links ? null : 'none']]" :text="Home" :active="[[true]]"/>
+          <bs-navbar-link :style-display="[[_links ? null : 'none']]" :text="Link"/>
+          <bs-navbar-link :style-display="[[_links ? null : 'none']]" :text="Disabled link" :disabled="[[true]]"/>
+
+          <bs-navbar-dropdown :style-display="[[_menu ? null : 'none']]">
+            <bs-dropdown-item>Action</bs-dropdown-item>
+            <bs-dropdown-item>Another action</bs-dropdown-item>
+            <bs-dropdown-divider/>
+            <bs-dropdown-item>Something else here</bs-dropdown-item>
+          </bs-navbar-dropdown>
+        </bs-navbar>
+      </bs-example>
+    </bs-container>
+  </body>
+</html>
